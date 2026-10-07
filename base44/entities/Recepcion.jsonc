@@ -1,0 +1,244 @@
+{
+  "name": "Recepcion",
+  "type": "object",
+  "properties": {
+    "cargaId": {
+      "type": "string"
+    },
+    "tachosLiviano": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "litros": {
+            "type": "number",
+            "default": 0
+          },
+          "pesoBrutoKg": {
+            "type": "number",
+            "default": 0
+          },
+          "taraKg": {
+            "type": "number",
+            "default": 12
+          },
+          "tipo": {
+            "type": "string",
+            "default": "",
+            "description": "Tipo de org\u00e1nico (banana, hojas, zapallo, etc.)"
+          }
+        }
+      },
+      "default": []
+    },
+    "tachosDenso": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "litros": {
+            "type": "number",
+            "default": 0
+          },
+          "pesoBrutoKg": {
+            "type": "number",
+            "default": 0
+          },
+          "taraKg": {
+            "type": "number",
+            "default": 12
+          },
+          "tipo": {
+            "type": "string",
+            "default": "",
+            "description": "Tipo de org\u00e1nico denso (carne, c\u00edtrico, palta, ajo, etc.)"
+          }
+        }
+      },
+      "default": []
+    },
+    "criticoTipo": {
+      "type": "string",
+      "default": "",
+      "description": "Tipo de cr\u00edtico descartado (papa, cebolla, etc.)"
+    },
+    "criticoLitros": {
+      "type": "number",
+      "default": 0,
+      "description": "Papa + cebolla \u2014 se descarta, no entra al BioComp"
+    },
+    "criticoKg": {
+      "type": "number",
+      "default": 0
+    },
+    "criticoObs": {
+      "type": "string",
+      "default": ""
+    },
+    "descarteLitros": {
+      "type": "number",
+      "default": 0
+    },
+    "descarteKg": {
+      "type": "number",
+      "default": 0
+    },
+    "descarteMotivo": {
+      "type": "string",
+      "default": ""
+    },
+    "subtotalLivianoL": {
+      "type": "number",
+      "default": 0
+    },
+    "subtotalLivianoKg": {
+      "type": "number",
+      "default": 0
+    },
+    "subtotalDensoL": {
+      "type": "number",
+      "default": 0
+    },
+    "subtotalDensoKg": {
+      "type": "number",
+      "default": 0
+    },
+    "totalOrganicoL": {
+      "type": "number",
+      "default": 0
+    },
+    "totalOrganicoKg": {
+      "type": "number",
+      "default": 0
+    },
+    "densidadOrganica": {
+      "type": "number",
+      "default": 0
+    },
+    "tachosVerdura": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "litros": {
+            "type": "number",
+            "default": 0
+          },
+          "pesoBrutoKg": {
+            "type": "number",
+            "default": 0
+          },
+          "taraKg": {
+            "type": "number",
+            "default": 12
+          }
+        }
+      },
+      "default": [],
+      "description": "Deprecado \u2014 usar tachosLiviano (compatibilidad hist\u00f3rica)"
+    },
+    "tachosCarne": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "litros": {
+            "type": "number",
+            "default": 0
+          },
+          "pesoBrutoKg": {
+            "type": "number",
+            "default": 0
+          },
+          "taraKg": {
+            "type": "number",
+            "default": 12
+          }
+        }
+      },
+      "default": [],
+      "description": "Deprecado \u2014 usar tachosDenso (compatibilidad hist\u00f3rica)"
+    },
+    "densosLitros": {
+      "type": "number",
+      "default": 0,
+      "description": "Deprecado \u2014 merged en subtotalDensoL (compatibilidad hist\u00f3rica)"
+    },
+    "densosKg": {
+      "type": "number",
+      "default": 0
+    },
+    "densosObs": {
+      "type": "string",
+      "default": ""
+    },
+    "subtotalVerduraL": {
+      "type": "number",
+      "default": 0,
+      "description": "Deprecado \u2014 usar subtotalLivianoL"
+    },
+    "subtotalVerduraKg": {
+      "type": "number",
+      "default": 0
+    },
+    "subtotalCarneL": {
+      "type": "number",
+      "default": 0,
+      "description": "Deprecado \u2014 usar subtotalDensoL"
+    },
+    "subtotalCarneKg": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "cargaId"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

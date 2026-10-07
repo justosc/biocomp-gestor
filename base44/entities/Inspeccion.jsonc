@@ -1,0 +1,88 @@
+{
+  "name": "Inspeccion",
+  "type": "object",
+  "properties": {
+    "fecha": {
+      "type": "string",
+      "format": "date"
+    },
+    "temperatura": {
+      "type": "number",
+      "default": 0
+    },
+    "humedad": {
+      "type": "number",
+      "default": 0
+    },
+    "olor": {
+      "type": "string",
+      "default": ""
+    },
+    "textura": {
+      "type": "string",
+      "default": ""
+    },
+    "color": {
+      "type": "string",
+      "default": ""
+    },
+    "responsable": {
+      "type": "string",
+      "default": ""
+    },
+    "observaciones": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "required": [
+    "fecha"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

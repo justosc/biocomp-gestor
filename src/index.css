@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 150 17% 98%;
+    --foreground: 156 28% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 156 28% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 156 28% 14%;
+    --primary: 153 40% 30%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 153 22% 90%;
+    --secondary-foreground: 156 28% 14%;
+    --muted: 153 22% 90%;
+    --muted-foreground: 153 16% 42%;
+    --accent: 84 40% 49%;
+    --accent-foreground: 156 28% 14%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 153 18% 86%;
+    --input: 153 18% 86%;
+    --ring: 153 40% 30%;
+    --chart-1: 153 40% 30%;
+    --chart-2: 84 40% 49%;
+    --chart-3: 156 28% 14%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --font-heading: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --sidebar-background: 153 22% 95%;
+    --sidebar-foreground: 156 28% 14%;
+    --sidebar-primary: 153 40% 30%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 153 22% 90%;
+    --sidebar-accent-foreground: 156 28% 14%;
+    --sidebar-border: 153 18% 86%;
+    --sidebar-ring: 153 40% 30%;
+  }
+
+  .dark {
+    --background: 156 28% 14%;
+    --foreground: 150 17% 98%;
+    --card: 156 25% 18%;
+    --card-foreground: 150 17% 98%;
+    --popover: 156 25% 18%;
+    --popover-foreground: 150 17% 98%;
+    --primary: 84 40% 49%;
+    --primary-foreground: 156 28% 14%;
+    --secondary: 156 20% 22%;
+    --secondary-foreground: 150 17% 98%;
+    --muted: 156 20% 22%;
+    --muted-foreground: 150 12% 65%;
+    --accent: 84 40% 49%;
+    --accent-foreground: 156 28% 14%;
+    --destructive: 0 62.8% 40%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 156 20% 26%;
+    --input: 156 20% 22%;
+    --ring: 84 40% 49%;
+    --chart-1: 84 40% 49%;
+    --chart-2: 153 40% 45%;
+    --chart-3: 150 17% 98%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --sidebar-background: 156 25% 12%;
+    --sidebar-foreground: 150 17% 98%;
+    --sidebar-primary: 84 40% 49%;
+    --sidebar-primary-foreground: 156 28% 14%;
+    --sidebar-accent: 156 20% 20%;
+    --sidebar-accent-foreground: 150 17% 98%;
+    --sidebar-border: 156 20% 22%;
+    --sidebar-ring: 84 40% 49%;
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* === Dark mode overrides === */
+.dark { color-scheme: dark; }
+.dark input, .dark select, .dark textarea {
+  background-color: #1A2E26;
+  color: #E8F0EB;
+}
+.dark input::placeholder, .dark textarea::placeholder {
+  color: #5A7368;
+}
+.dark .bg-white { background-color: #22362C; }
+.dark .bg-gray-50 { background-color: #1A2E26; }
+.dark .bg-gray-100 { background-color: #2A4337; }
+.dark .hover\:bg-gray-50:hover { background-color: #21392E; }
+.dark .hover\:bg-gray-100:hover { background-color: #334B40; }
+
+.dark .text-gray-900 { color: #E8F0EB; }
+.dark .text-gray-700 { color: #B5C9BC; }
+.dark .text-gray-600 { color: #8FA89B; }
+.dark .text-gray-500 { color: #6E8579; }
+.dark .text-gray-400 { color: #5A7368; }
+.dark .text-gray-300 { color: #3F5A4D; }
+
+.dark .border-gray-100 { border-color: #252830; }
+.dark .border-gray-200 { border-color: #2a2e37; }
+.dark .border-gray-50 { border-color: #1c1f26; }
+.dark .divide-gray-50 > :not([hidden]) ~ :not([hidden]) { border-color: #1c1f26; }
+
+/* Colored tints */
+.dark .bg-emerald-50 { background-color: #1E3A2C; }
+.dark .bg-amber-50 { background-color: #2e2510; }
+.dark .bg-red-50 { background-color: #2e1010; }
+.dark .bg-rose-50 { background-color: #2e1018; }
+.dark .bg-blue-50 { background-color: #0d1a2e; }
+.dark .bg-emerald-100 { background-color: #2A5040; }
+.dark .bg-emerald-600 { background-color: #3D8B6B; }
+.dark .bg-emerald-700 { background-color: #2D6A4F; }
+.dark .hover\:bg-emerald-700:hover { background-color: #2D6A4F; }
+.dark .bg-amber-100 { background-color: #3d3215; }
+
+/* Colored text on dark tints */
+.dark .text-emerald-900 { color: #A8D8BC; }
+.dark .text-emerald-700 { color: #A8D8BC; }
+.dark .text-emerald-600 { color: #88B04B; }
+.dark .text-amber-900 { color: #fcd34d; }
+.dark .text-amber-700 { color: #fcd34d; }
+.dark .text-amber-600 { color: #fbbf24; }
+.dark .text-red-700 { color: #fca5a5; }
+.dark .text-red-600 { color: #f87171; }
+.dark .text-rose-900 { color: #fda4af; }
+.dark .text-rose-700 { color: #fda4af; }
+.dark .text-rose-600 { color: #fb7185; }
+.dark .text-blue-500 { color: #60a5fa; }
+.dark .text-blue-700 { color: #93c5fd; }
+
+/* Colored borders */
+.dark .border-emerald-100 { border-color: #2A5040; }
+.dark .border-emerald-200 { border-color: #356654; }
+.dark .border-amber-100 { border-color: #4d3e16; }
+.dark .border-amber-200 { border-color: #66501a; }
+.dark .border-red-200 { border-color: #661a1a; }
+
+/* TachoMeter SVG */
+.dark .tacho-body { fill: #252830; stroke: #2a2e37; }
+.dark .tacho-base { fill: #475569; }
+.dark .tacho-mark { stroke: #475569; }
+
+/* === Native mobile enhancements === */
+html, body {
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Disable text selection on interactive elements */
+button, a, nav, [role="menu"], [role="menuitem"], [role="button"], .lucide, svg, img {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Keep text content selectable */
+p, h1, h2, h3, h4, h5, h6, li, td, th, blockquote, label, input, textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Safe area insets */
+.pt-safe { padding-top: env(safe-area-inset-top); }
+.pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+
+/* Prevenir zoom automático de iOS al enfocar inputs (requiere >=16px) */
+@media (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  input:not([type="checkbox"]):not([type="radio"]), textarea {
+    min-height: 48px;
+  }
+}

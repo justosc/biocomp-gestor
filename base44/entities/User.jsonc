@@ -1,0 +1,70 @@
+{
+  "properties": {
+    "role": {
+      "type": "string",
+      "description": "The role of the user in the app",
+      "enum": [
+        "admin",
+        "user"
+      ]
+    },
+    "nombre": {
+      "type": "string",
+      "default": ""
+    },
+    "apellido": {
+      "type": "string",
+      "default": ""
+    },
+    "dni": {
+      "type": "string",
+      "default": ""
+    },
+    "autorizado": {
+      "type": "boolean",
+      "default": false,
+      "description": "Indica si el usuario fue autorizado para usar la app"
+    }
+  },
+  "required": [
+    "role"
+  ],
+  "name": "User",
+  "type": "object",
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

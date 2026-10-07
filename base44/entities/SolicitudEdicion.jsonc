@@ -1,0 +1,108 @@
+{
+  "name": "SolicitudEdicion",
+  "type": "object",
+  "properties": {
+    "entityType": {
+      "type": "string",
+      "enum": [
+        "Carga",
+        "Recepcion",
+        "Acondicionamiento",
+        "Tratamiento",
+        "Inspeccion",
+        "Descarga",
+        "Bin"
+      ]
+    },
+    "targetId": {
+      "type": "string"
+    },
+    "targetLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "cambios": {
+      "type": "string",
+      "default": "{}",
+      "description": "JSON con los campos a modificar y sus nuevos valores"
+    },
+    "motivo": {
+      "type": "string",
+      "default": ""
+    },
+    "estado": {
+      "type": "string",
+      "enum": [
+        "pendiente",
+        "aprobada",
+        "rechazada"
+      ],
+      "default": "pendiente"
+    },
+    "solicitadoPorNombre": {
+      "type": "string",
+      "default": ""
+    },
+    "solicitadoPorId": {
+      "type": "string",
+      "default": ""
+    },
+    "resueltoPorNombre": {
+      "type": "string",
+      "default": ""
+    },
+    "fechaResolucion": {
+      "type": "string",
+      "format": "date"
+    },
+    "comentarioAdmin": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "required": [
+    "entityType",
+    "targetId",
+    "cambios",
+    "motivo",
+    "estado"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

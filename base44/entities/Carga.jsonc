@@ -1,0 +1,102 @@
+{
+  "name": "Carga",
+  "type": "object",
+  "properties": {
+    "codigo": {
+      "type": "string",
+      "description": "C-0001, C-0002..."
+    },
+    "estado": {
+      "type": "string",
+      "enum": [
+        "recepcion",
+        "en_biocomp",
+        "descargada"
+      ],
+      "default": "recepcion"
+    },
+    "fechaRealInicio": {
+      "type": "string",
+      "format": "date",
+      "description": "Fecha real de recepci\u00f3n"
+    },
+    "horaRealInicio": {
+      "type": "string",
+      "description": "Hora real de recepci\u00f3n (HH:mm)"
+    },
+    "fechaRegistro": {
+      "type": "string",
+      "format": "date",
+      "description": "Fecha en que se carg\u00f3 el dato (fija)"
+    },
+    "fechaRealIngresoBiocomp": {
+      "type": "string",
+      "format": "date",
+      "description": "Fecha real de ingreso a la m\u00e1quina"
+    },
+    "horaRealIngresoBiocomp": {
+      "type": "string",
+      "description": "Hora real de ingreso a la m\u00e1quina (HH:mm). Base del conteo de la curva de deshidrataci\u00f3n."
+    }
+  },
+  "required": [
+    "codigo",
+    "estado",
+    "fechaRealInicio",
+    "fechaRegistro"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

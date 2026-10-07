@@ -1,0 +1,56 @@
+{
+  "name": "Invitacion",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "Email pre-autorizado (lowercase)"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "user"
+      ],
+      "default": "user"
+    },
+    "estado": {
+      "type": "string",
+      "enum": [
+        "pendiente",
+        "aceptada"
+      ],
+      "default": "pendiente"
+    },
+    "fecha": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "email",
+    "role"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

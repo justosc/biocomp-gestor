@@ -1,0 +1,74 @@
+{
+  "name": "Bin",
+  "type": "object",
+  "properties": {
+    "estado": {
+      "type": "string",
+      "enum": [
+        "ocupado",
+        "vacio"
+      ],
+      "default": "vacio"
+    },
+    "fecha": {
+      "type": "string",
+      "format": "date"
+    },
+    "litros": {
+      "type": "number",
+      "default": 0
+    },
+    "kg": {
+      "type": "number",
+      "default": 0
+    },
+    "obs": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "required": [
+    "estado"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

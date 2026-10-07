@@ -1,0 +1,77 @@
+{
+  "name": "Descarga",
+  "type": "object",
+  "properties": {
+    "fecha": {
+      "type": "string",
+      "format": "date"
+    },
+    "litrosDescargados": {
+      "type": "number",
+      "default": 0
+    },
+    "kgDescargados": {
+      "type": "number",
+      "default": 0
+    },
+    "binsUsados": {
+      "type": "number",
+      "default": 0
+    },
+    "obs": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "required": [
+    "fecha",
+    "litrosDescargados"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

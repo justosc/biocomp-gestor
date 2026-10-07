@@ -1,0 +1,89 @@
+{
+  "name": "Tratamiento",
+  "type": "object",
+  "properties": {
+    "fecha": {
+      "type": "string",
+      "format": "date"
+    },
+    "momento": {
+      "type": "string",
+      "enum": [
+        "ma\u00f1ana",
+        "mediodia",
+        "noche"
+      ]
+    },
+    "tempEntrada": {
+      "type": "number",
+      "default": 0
+    },
+    "tempSalida": {
+      "type": "number",
+      "default": 0
+    },
+    "cicloEstado": {
+      "type": "string",
+      "enum": [
+        "en_ciclo",
+        "parado"
+      ],
+      "default": "en_ciclo"
+    },
+    "obs": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "required": [
+    "fecha",
+    "momento"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

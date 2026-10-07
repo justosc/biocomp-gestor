@@ -1,0 +1,126 @@
+{
+  "name": "Setting",
+  "type": "object",
+  "properties": {
+    "sede": {
+      "type": "string",
+      "default": "Vicente L\u00f3pez"
+    },
+    "capacidadBinL": {
+      "type": "number",
+      "default": 800
+    },
+    "binsTotales": {
+      "type": "number",
+      "default": 4
+    },
+    "capacidadTachoL": {
+      "type": "number",
+      "default": 220
+    },
+    "taraTacho220Kg": {
+      "type": "number",
+      "default": 12
+    },
+    "virutaBolsaL": {
+      "type": "number",
+      "default": 80
+    },
+    "virutaBolsaKg": {
+      "type": "number",
+      "default": 17
+    },
+    "diasEstabilizacion": {
+      "type": "number",
+      "default": 20
+    },
+    "factorFinalVerdura": {
+      "type": "number",
+      "default": 0.2,
+      "description": "Residuo nitrogenado liviano \u2014 disminuye 80% en 20 d\u00edas"
+    },
+    "factorFinalCarne": {
+      "type": "number",
+      "default": 0.2,
+      "description": "Residuo nitrogenado denso \u2014 disminuye 80% en 20 d\u00edas"
+    },
+    "factorFinalVirutaMasa": {
+      "type": "number",
+      "default": 0.25,
+      "description": "Residuo carbono estructurante (viruta) \u2014 disminuye 75% en 20 d\u00edas"
+    },
+    "factorFinalVirutaVolumen": {
+      "type": "number",
+      "default": 0.25,
+      "description": "Residuo carbono estructurante (viruta) volumen \u2014 disminuye 75% en 20 d\u00edas"
+    },
+    "tempIdealMinC": {
+      "type": "number",
+      "default": 50
+    },
+    "tempIdealMaxC": {
+      "type": "number",
+      "default": 65
+    },
+    "tableroOffsetC": {
+      "type": "number",
+      "default": 5
+    },
+    "humedadIdealMinPercent": {
+      "type": "number",
+      "default": 40
+    },
+    "humedadIdealPercent": {
+      "type": "number",
+      "default": 60
+    },
+    "litrosSemanaReferencia": {
+      "type": "number",
+      "default": 1280
+    },
+    "kgSemanaReferencia": {
+      "type": "number",
+      "default": 700
+    },
+    "sheetId": {
+      "type": "string",
+      "default": ""
+    },
+    "sheetUrl": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "required": [],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "BioComp Gestor",
+  "short_name": "BioComp",
+  "description": "Gestión operativa de biocompostaje",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d2e22",
+  "theme_color": "#10b981",
+  "icons": [
+    {
+      "src": "https://media.base44.com/images/public/6a79c74dc3c4ace1fc6c6172/71d6f4258_generated_image.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

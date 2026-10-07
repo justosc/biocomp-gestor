@@ -1,0 +1,83 @@
+{
+  "name": "Acondicionamiento",
+  "type": "object",
+  "properties": {
+    "cargaId": {
+      "type": "string"
+    },
+    "virutaNecesariaL": {
+      "type": "number",
+      "default": 0
+    },
+    "virutaRealL": {
+      "type": "number",
+      "default": 0
+    },
+    "virutaRealKg": {
+      "type": "number",
+      "default": 0
+    },
+    "totalEntradaL": {
+      "type": "number",
+      "default": 0
+    },
+    "totalEntradaKg": {
+      "type": "number",
+      "default": 0
+    },
+    "fechaRealIngresoBiocomp": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "cargaId"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

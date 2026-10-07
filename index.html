@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="https://media.base44.com/images/public/6a79c74dc3c4ace1fc6c6172/71d6f4258_generated_image.png?v=2" />
+    <link rel="apple-touch-icon" href="https://media.base44.com/images/public/6a79c74dc3c4ace1fc6c6172/71d6f4258_generated_image.png?v=2" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://media.base44.com/images/public/6a79c74dc3c4ace1fc6c6172/71d6f4258_generated_image.png?v=2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Base44 APP</title>
+    <script>
+      (function() {
+        var t = localStorage.getItem('biocomp-theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

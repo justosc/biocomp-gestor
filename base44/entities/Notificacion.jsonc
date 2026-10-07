@@ -1,0 +1,71 @@
+{
+  "name": "Notificacion",
+  "type": "object",
+  "properties": {
+    "tipo": {
+      "type": "string",
+      "default": "carga_creada",
+      "description": "Tipo de evento (carga_creada, etc.)"
+    },
+    "titulo": {
+      "type": "string",
+      "default": ""
+    },
+    "mensaje": {
+      "type": "string",
+      "default": ""
+    },
+    "cargaId": {
+      "type": "string",
+      "default": ""
+    },
+    "destinatarioId": {
+      "type": "string",
+      "description": "ID del usuario destinatario (admin)"
+    },
+    "leida": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "tipo",
+    "destinatarioId"
+  ],
+  "rls": {
+    "read": {
+      "data.destinatarioId": "{{user.id}}"
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.destinatarioId": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

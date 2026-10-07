@@ -1,0 +1,40 @@
+{
+  "description": "Avisa por email al administrador cuando un operario registra una carga nueva en el BioComp",
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "notificar_carga_creada",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "notificar": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "notificarCargaCreada",
+            "args": {
+              "cargaId": "${ .trigger.entity_id }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Notificar al admin",
+            "description": "Email a administradores"
+          }
+        }
+      }
+    ]
+  },
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "entity",
+      "events": [
+        "create"
+      ],
+      "entity_name": "Carga"
+    }
+  },
+  "name": "Notificar Carga Creada"
+}

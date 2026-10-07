@@ -1,0 +1,112 @@
+{
+  "name": "Expedicion",
+  "type": "object",
+  "properties": {
+    "codigo": {
+      "type": "string",
+      "description": "E-0001, E-0002..."
+    },
+    "descargaId": {
+      "type": "string",
+      "description": "Descarga de la que se extrae el material (bins, litros, kg)"
+    },
+    "binsRetirados": {
+      "type": "number",
+      "default": 0
+    },
+    "litros": {
+      "type": "number",
+      "default": 0
+    },
+    "kg": {
+      "type": "number",
+      "default": 0
+    },
+    "transportista": {
+      "type": "string",
+      "default": ""
+    },
+    "fechaRetiro": {
+      "type": "string",
+      "format": "date",
+      "description": "Fecha real del retiro con transporte"
+    },
+    "fechaEstimadaIngreso": {
+      "type": "string",
+      "format": "date",
+      "description": "Fecha estimada de ingreso en la planta de maduraci\u00f3n"
+    },
+    "destino": {
+      "type": "string",
+      "default": "",
+      "description": "Planta/sede de maduraci\u00f3n que recibe el material"
+    },
+    "estado": {
+      "type": "string",
+      "enum": [
+        "pendiente",
+        "enviado",
+        "recibido"
+      ],
+      "default": "pendiente",
+      "description": "pendiente = creada, enviado = notificada a maduraci\u00f3n, recibido = confirmada por maduraci\u00f3n"
+    },
+    "notificado": {
+      "type": "boolean",
+      "default": false
+    },
+    "fechaNotificacion": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "obs": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "required": [
+    "codigo",
+    "fechaRetiro",
+    "litros"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
